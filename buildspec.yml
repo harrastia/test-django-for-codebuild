@@ -5,6 +5,7 @@ phases:
       - su - postgres -c "psql -c \"CREATE USER test_db_dev WITH PASSWORD 'test_db_dev'; ALTER ROLE test_db_dev WITH CREATEDB;\"
       - . /vaultenv/.env/bin/activate
   build:
+    commands:
       - cd django && PYTHONPATH=. python runtests.py
 
   post_build:
