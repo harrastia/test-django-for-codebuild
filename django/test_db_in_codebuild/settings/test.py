@@ -4,9 +4,6 @@ from random import choice
 from os import environ
 
 # default the test runner to be nose runner unless set in environment
-environ.setdefault('DJANGO_TEST_RUNNER_CLASS',
-                   'test_db_in_codebuild.test_runner.DjangoNoseTestSuiteSnapshotDBRunner')
-
 from .base import *
 
 DEBUG = False
@@ -48,11 +45,6 @@ LOGGING = {
             'level': 'CRITICAL',
             'class': 'logging.StreamHandler',
         },
-        # a sanitizer of audit
-        'auditdb_sanitizer': {
-            'level': 'DEBUG',
-            'class': 'vault.audit.handlers.AuditHandlerSanitizer',
-        }
     },
     'loggers': {
         'django.request': {
@@ -60,27 +52,13 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        'oauth2': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        # add the auditdb sanitizer to the ones using it in production
-        'vault': {
-            'handlers': ['console', 'auditdb_sanitizer'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'vault.bankgwclient': {
-            'handlers': ['console', 'auditdb_sanitizer'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-        # reduce weasyprint logging
-        'weasyprint': {
-            'handlers': ['console'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
     },
 }
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-inclusive',
+    '--cover-package=vault',
+    '--with-xunit',
+]
+NOSE_VERBOSITY = 2

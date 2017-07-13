@@ -14,7 +14,7 @@ VAULT_MODULES = (
 
 def runtests(*args, **kwargs):
     fail = os.system(
-        './manage.py test %s --noinput --verbosity=2'
+        'django-admin test %s --noinput --verbosity=2 --testrunner="django_nose.NoseTestSuiteRunner"'
         % ' '.join(VAULT_MODULES))
     sys.exit(fail >> 8)
 
