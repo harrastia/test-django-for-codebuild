@@ -10,9 +10,9 @@ phases:
     commands:
       - cd django && PYTHONPATH=. python runtests.py
 
-  post_build:
-    commands:
-      - coverage xml
+#  post_build:
+#    commands:
+#      - coverage xml
 
 artifacts:
   files:
