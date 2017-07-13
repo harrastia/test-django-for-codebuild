@@ -40,3 +40,7 @@ static/vault-static/vault-static/
 celery/MANIFEST
 celery/dist
 mail/
+
+.coverage
+coverage.xml
+nosetests.xml
