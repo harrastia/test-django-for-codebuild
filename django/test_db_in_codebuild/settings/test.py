@@ -58,7 +58,7 @@ LOGGING = {
 NOSE_ARGS = [
     '--with-coverage',
     '--cover-inclusive',
-    '--cover-package=vault',
+    '--cover-package=test_db_in_codebuild',
     '--with-xunit',
 ]
 NOSE_VERBOSITY = 2
